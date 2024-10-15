@@ -7,8 +7,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+})->middleware(['auth', 'verified','userRole:'. \App\Enum\UserRole::ADMIN->value])->name('admin.dashboard'); 
+
+Route::get('/teacher/dashboard', function () {
+    return view('teacher.dashboard');
+})->middleware(['auth', 'verified','userRole:'. \App\Enum\UserRole::TEACHER->value])->name('teacher.dashboard');
+
+Route::get('/student/dashboard', function () {
+    return view('student.dashboard');
+})->middleware(['auth', 'verified','userRole:'. \App\Enum\UserRole::STUDENT->value])->name('student.dashboard');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
+
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
