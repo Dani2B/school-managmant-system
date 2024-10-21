@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Enum\UserRole;
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -14,7 +15,8 @@ Route::middleware(['auth', 'verified','userRole:'.UserRole::ADMIN->value])
 ->group(function () {
     
     Route::get('/dashboard', function () {
-        return view('admin.dashboard');}); 
+        return view('admin.dashboard');
+    })->name('admin.dashboard'); 
 
         Route::resource('users', UserController::class);
 });
