@@ -93,8 +93,24 @@
                                             class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
                                         </th>
                                         <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                                            <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                                            <a href="{{ route('users.show', $user) }}" class="text-gray-600 hover:text-gray-900">
+                                                
+                                                View
+                                            </a>
+
+                                            <a href="{{ route('users.edit', $user) }}" class="text-indigo-600 hover:text-indigo-900">
                                                 Edit
+                                            </a>
+
+                                            <form action="{{ route('users.destroy', $user->id) }}" method="POST"
+                                                style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger"
+                                                    onclick="return confirm('Are you sure you want to delete this item?')">
+                                                    Delete
+                                                </button>
+                                            </form>
                                             </a>
                                         </td>
                                     </tr>
