@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 use App\Enum\UserRole;
+
 
 
 Route::get('/', function () {
@@ -19,11 +21,12 @@ Route::middleware(['auth', 'verified','userRole:'.UserRole::ADMIN->value])
     })->name('admin.dashboard'); 
 
         Route::resource('users', UserController::class);
+
+     
 });
 
-// Route::get('/admin/dashboard', function () {
-//     return view('admin.dashboard');
-// })->middleware(['auth', 'verified','userRole:'. \App\Enum\UserRole::ADMIN->value])->name('admin.dashboard'); 
+
+
 
 Route::get('/teacher/dashboard', function () {
     return view('teacher.dashboard');

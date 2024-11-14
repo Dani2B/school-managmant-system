@@ -55,4 +55,13 @@ class User extends Authenticatable
             'role' => UserRole::class,
         ];
     }
+
+    public function courses()
+    {
+        if($this->role == UserRole::TEACHER)
+        {
+        return $this->hasMany(Course::class);
+        }
+        return null;
+    }
 }
