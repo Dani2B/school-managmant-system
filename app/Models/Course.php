@@ -21,11 +21,12 @@ class Course extends Model
         'name',
         'description',
         'credits',
+        'teacher_id',
     ];
 
     public function teacher(): BelongsTo
     {
-        return $this->belongsTo(User::class)->where('role',UserRole::TEACHER);
+        return $this->belongsTo(User::class)->where('role',UserRole::TEACHER); 
     }
 
 

@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Enum\UserRole;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use App\Models\User;
+
+
 
 class CourseController extends Controller
 {
@@ -12,8 +16,9 @@ class CourseController extends Controller
      */
     public function index()
     {
+        $courses = Course::with('teacher')->orderBy('id','desc')->paginate(10);
 
-        return view('admin.courses.index');
+        return view('admin.courses.index', ['courses' => $courses]);
     }
 
     /**
@@ -21,7 +26,10 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        $teachers = User::where('role', UserRole::TEACHER)->get();
+
+
+        return view('admin.courses.create', ['teachers' => $teachers]);
     }
 
     /**
@@ -29,7 +37,10 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Course::create($request->all());
+
+
+        return redirect()->route("courses.index")->with("success", "Course created succesfully");
     }
 
     /**

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Enum\UserRole;
 
 
-
+//Routes Admin
 Route::get('/', function () {
     return view('welcome');
 });
@@ -21,10 +21,12 @@ Route::middleware(['auth', 'verified','userRole:'.UserRole::ADMIN->value])
     })->name('admin.dashboard'); 
 
         Route::resource('users', UserController::class);
-
+        Route::resource('courses', CourseController ::class);
      
 });
 
+
+//Routes teacher
 
 
 
@@ -32,14 +34,18 @@ Route::get('/teacher/dashboard', function () {
     return view('teacher.dashboard');
 })->middleware(['auth', 'verified','userRole:'. \App\Enum\UserRole::TEACHER->value])->name('teacher.dashboard');
 
+
+//Routes student
 Route::get('/student/dashboard', function () {
     return view('student.dashboard');
 })->middleware(['auth', 'verified','userRole:'. \App\Enum\UserRole::STUDENT->value])->name('student.dashboard');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
 
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
