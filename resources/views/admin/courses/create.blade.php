@@ -12,7 +12,7 @@
                 <div>
                     <x-input-label for="name" :value="__('Name')" />
                     <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
-                        required autofocus autocomplete="username" />
+                        autofocus autocomplete="username" />
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
 
@@ -25,12 +25,12 @@
                 <div>
                     <x-input-label for="credits" :value="__('Credits')" />
                     <x-text-input step="10" id="name" class="block mt-1 w-full" type="number" name="credits"
-                        :value="old('credits')" required autofocus autocomplete="username" />
+                        :value="old('credits')" autofocus autocomplete="username" />
                     <x-input-error :messages="$errors->get('credits')" class="mt-2" />
                 </div>
 
                 <div>
-                    <x-input-label for="teacher" :value="__('Teacher')" />
+                    <x-input-label for="teacher_id" :value="__('Teacher')" />
                     <select name="teacher_id">
                         <Option value="0">select option</Option>
                         @foreach ($teachers as $teacher)

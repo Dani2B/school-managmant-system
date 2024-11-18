@@ -13,7 +13,7 @@
                 <div>
                     <x-input-label for="name" :value="__('Name')" />
                     <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
-                        required autofocus autocomplete="username" />
+                        autofocus autocomplete="username" />
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
 
@@ -22,7 +22,7 @@
                 <div>
                     <x-input-label for="email" :value="__('Email')" />
                     <x-text-input id="email" class="block mt-1 w-full" type="email" name="email"
-                        :value="old('email')" required autofocus autocomplete="username" />
+                        :value="old('email')" autofocus autocomplete="username" />
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
 
@@ -30,7 +30,7 @@
                 <div>
                     <x-input-label for="date_of_birth" :value="__('Date of birth')" />
                     <x-text-input id="date_of_birth" class="block mt-1 w-full" type="date" name="date_of_birth"
-                        :value="old('date_of_birth')" required autofocus autocomplete="username" />
+                        :value="old('date_of_birth')" autofocus autocomplete="username" />
                     <x-input-error :messages="$errors->get('date_of_birth')" class="mt-2" />
                 </div>
 
@@ -50,7 +50,7 @@
                 <div class="mt-4">
                     <x-input-label for="password" :value="__('Password')" />
 
-                    <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                    <x-text-input id="password" class="block mt-1 w-full" type="password" name="password"
                         autocomplete="current-password" />
 
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
@@ -59,35 +59,35 @@
                 <div>
                     <x-input-label for="street" :value="__('Street')" />
                     <x-text-input id="street" class="block mt-1 w-full" type="text" name="street"
-                        :value="old('street')" required autofocus autocomplete="username" />
+                        :value="old('street')" autofocus autocomplete="username" />
                     <x-input-error :messages="$errors->get('street')" class="mt-2" />
                 </div>
 
                 <div>
                     <x-input-label for="house_number" :value="__('House number')" />
                     <x-text-input id="house_number" class="block mt-1 w-full" type="text" name="house_number"
-                        :value="old('house_number')" required autofocus autocomplete="username" />
+                        :value="old('house_number')" autofocus autocomplete="username" />
                     <x-input-error :messages="$errors->get('house_number')" class="mt-2" />
                 </div>
 
                 <div>
                     <x-input-label for="zip_code" :value="__('Zip code')" />
                     <x-text-input id="zip_code" class="block mt-1 w-full" type="text" name="zip_code"
-                        :value="old('zip_code')" required autofocus autocomplete="username" />
+                        :value="old('zip_code')" autofocus autocomplete="username" />
                     <x-input-error :messages="$errors->get('zip_code')" class="mt-2" />
                 </div>
 
                 <div>
                     <x-input-label for="city" :value="__('City')" />
                     <x-text-input id="city" class="block mt-1 w-full" type="text" name="city"
-                        :value="old('city')" required autofocus autocomplete="username" />
+                        :value="old('city')" autofocus autocomplete="username" />
                     <x-input-error :messages="$errors->get('city')" class="mt-2" />
                 </div>
 
                 <div>
                     <x-input-label for="country" :value="__('Country')" />
                     <x-text-input id="country" class="block mt-1 w-full" type="text" name="country"
-                        :value="old('country')" required autofocus autocomplete="username" />
+                        :value="old('country')" autofocus autocomplete="username" />
                     <x-input-error :messages="$errors->get('country')" class="mt-2" />
                 </div>
 

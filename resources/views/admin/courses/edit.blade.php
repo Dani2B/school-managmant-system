@@ -13,21 +13,21 @@
                 <div>
                     <x-input-label for="name" :value="__('Name')" />
                     <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="$course->name"
-                        required autofocus autocomplete="username" />
+                        autofocus autocomplete="username" />
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
 
                 <div>
                     <x-input-label for="description" :value="__('Description')" />
-                    <textarea class="block mt-1 w-full" name="description" id="description">{{$course->description}}
+                    <textarea class="block mt-1 w-full" name="description" id="description">{{ $course->description }}
                         </textarea>
                     <x-input-error :messages="$errors->get('description')" class="mt-2" />
                 </div>
 
                 <div>
                     <x-input-label for="credits" :value="__('Credits')" />
-                    <x-text-input step="10" id="name" class="block mt-1 w-full" type="number" name="credits" :value="$course->credits"
-                     required autofocus autocomplete="username" />
+                    <x-text-input step="10" id="name" class="block mt-1 w-full" type="number" name="credits"
+                        :value="$course->credits" autofocus autocomplete="username" />
                     <x-input-error :messages="$errors->get('credits')" class="mt-2" />
                 </div>
 
@@ -36,9 +36,8 @@
                     <select name="teacher_id">
                         <Option value="0">select option</Option>
                         @foreach ($teachers as $teacher)
-                            <option value="{{ $teacher->id }}"
-                                @if($teacher->id == $course->teacher->id) selected @endif
-                            >{{$teacher->name}}</option>
+                            <option value="{{ $teacher->id }}" @if ($teacher->id == $course->teacher->id) selected @endif>
+                                {{ $teacher->name }}</option>
                         @endforeach
                     </select>
                     <x-input-error :messages="$errors->get('teacher_id')" class="mt-2" />

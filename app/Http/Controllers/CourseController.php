@@ -37,6 +37,13 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'credits' => 'required|string|',
+            'teacher_id' => 'required|exists:users,id',
+        ]);
+
         Course::create($request->all());
 
 
@@ -67,6 +74,13 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'credits' => 'required|string|',
+            'teacher_id' => 'required|exists:users,id',
+        ]);
+
         $course->update($request->all());
 
         return redirect()->route("courses.index")->with("success", "Course updated succesfully");

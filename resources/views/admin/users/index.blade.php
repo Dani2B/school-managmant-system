@@ -18,7 +18,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @if (session('success'))
-                <div class="font-medium text-sm bg-green-600 dark:text-green-400">
+                <div class="font-medium text-sm bg-green-100 text-green-600 dark:text-green-400 p-5">
                     {{ session('success') }}
 
                 </div>
