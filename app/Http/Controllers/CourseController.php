@@ -48,7 +48,8 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
+
+        return view("admin.courses.show", ["course" => $course]);
     }
 
     /**
@@ -56,7 +57,9 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        //
+        $teachers = User::where('role', UserRole::TEACHER)->get();
+
+        return view('admin.courses.edit', ['course' => $course ,'teachers' => $teachers]);
     }
 
     /**
@@ -64,7 +67,9 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
-        //
+        $course->update($request->all());
+
+        return redirect()->route("courses.index")->with("success", "Course updated succesfully");
     }
 
     /**
@@ -72,6 +77,8 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        $course->delete();
+
+        return redirect()->route("courses.index")->with("success", "Course deleted succesfully");
     }
 }
