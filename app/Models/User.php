@@ -62,6 +62,9 @@ class User extends Authenticatable
         {
         return $this->hasMany(Course::class);
         }
+        elseif ($this->role == UserRole::STUDENT){
+            return $this->belongsToMany(Course::class, 'course_student');
+        }
         return null;
     }
 }

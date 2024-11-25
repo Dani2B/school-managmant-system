@@ -9,6 +9,7 @@ use App\Models\User;
 
 
 
+
 class CourseController extends Controller
 {
     /**
@@ -55,8 +56,9 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
+        $students = $course->students()->paginate(10); 
 
-        return view("admin.courses.show", ["course" => $course]);
+        return view("admin.courses.show", ["course" => $course, "students" => $students]);
     }
 
     /**
