@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CourseController;
@@ -12,18 +13,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth', 'verified','userRole:'.UserRole::ADMIN->value])
-->prefix('admin')
-->group(function () {
-    
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard'); 
+Route::middleware(['auth', 'verified', 'userRole:' . UserRole::ADMIN->value])
+    ->prefix('admin')
+    ->group(function () {
 
+
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
         Route::resource('users', UserController::class);
-        Route::resource('courses', CourseController ::class);
-     
-});
+        Route::resource('courses', CourseController::class);
+
+    });
 
 
 //Routes teacher
@@ -32,13 +31,13 @@ Route::middleware(['auth', 'verified','userRole:'.UserRole::ADMIN->value])
 
 Route::get('/teacher/dashboard', function () {
     return view('teacher.dashboard');
-})->middleware(['auth', 'verified','userRole:'. \App\Enum\UserRole::TEACHER->value])->name('teacher.dashboard');
+})->middleware(['auth', 'verified', 'userRole:' . \App\Enum\UserRole::TEACHER->value])->name('teacher.dashboard');
 
 
 //Routes student
 Route::get('/student/dashboard', function () {
     return view('student.dashboard');
-})->middleware(['auth', 'verified','userRole:'. \App\Enum\UserRole::STUDENT->value])->name('student.dashboard');
+})->middleware(['auth', 'verified', 'userRole:' . \App\Enum\UserRole::STUDENT->value])->name('student.dashboard');
 
 
 
@@ -53,4 +52,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
