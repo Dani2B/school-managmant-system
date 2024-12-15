@@ -60,11 +60,12 @@ class User extends Authenticatable
     {
         if($this->role == UserRole::TEACHER)
         {
-        return $this->hasMany(Course::class);
+        return $this->hasMany(Course::class,  'teacher_id', 'id');
         }
         elseif ($this->role == UserRole::STUDENT){
-            return $this->belongsToMany(Course::class, 'course_student');
+            return $this->belongsToMany(Course::class, 'course_student', 'student_id', 'course_id');
         }
+
         return null;
     }
 }

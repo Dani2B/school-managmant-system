@@ -25,16 +25,17 @@ Route::middleware(['auth', 'verified', 'userRole:' . UserRole::ADMIN->value])
     });
 
 
-//Routes teacher
-Route::get('/teacher/dashboard', function () {
-    return view('teacher.dashboard');
-})->middleware(['auth', 'verified', 'userRole:' . \App\Enum\UserRole::TEACHER->value])->name('teacher.dashboard');
-
+// //Routes teacher
+// Route::get('/teacher/dashboard', function () {
+//     return view('teacher.dashboard');
+// })->middleware(['auth', 'verified', 'checkuserRole:' . UserRole::TEACHER->value])->name('teacher.dashboard');
 
 Route::middleware(['auth', 'verified', 'userRole:' . UserRole::TEACHER->value])
     ->prefix('teacher')
     ->group(function () {
+        Route::get('/dashboard', [\App\Http\Controllers\Teacher\DashboardController::class, 'index'])->name('teacher.dashboard');
 
+        Route::get('/course/{course}', [App\Http\Controllers\Teacher\CourseController::class, 'show'])->name('teacher.courses.show');
     });
 
 
@@ -52,23 +53,6 @@ Route::middleware(['auth', 'verified', 'userRole:' . UserRole::STUDENT->value])
     });
 
 
-
-
-
-
-//Routes student
-// Route::get('/student/dashboard', function () {
-//     return view('student.dashboard');
-// })->middleware(['auth', 'verified', 'userRole:' . \App\Enum\UserRole::STUDENT->value])->name('student.dashboard');
-
-// Route::resource('courses', Student::class);
-
-
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
