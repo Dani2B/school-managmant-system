@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +38,9 @@ Route::middleware(['auth', 'verified', 'userRole:' . UserRole::TEACHER->value])
         Route::get('/dashboard', [\App\Http\Controllers\Teacher\DashboardController::class, 'index'])->name('teacher.dashboard');
 
         Route::get('/course/{course}', [App\Http\Controllers\Teacher\CourseController::class, 'show'])->name('teacher.courses.show');
+
+        Route::resource('courses.exams', ExamController::class, ['as' => 'teacher']);
+        // Route::resource('questions', QuestionController::class);
     });
 
 
