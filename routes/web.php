@@ -28,9 +28,6 @@ Route::middleware(['auth', 'verified', 'userRole:' . UserRole::ADMIN->value])
 
 
 // //Routes teacher
-// Route::get('/teacher/dashboard', function () {
-//     return view('teacher.dashboard');
-// })->middleware(['auth', 'verified', 'checkuserRole:' . UserRole::TEACHER->value])->name('teacher.dashboard');
 
 Route::middleware(['auth', 'verified', 'userRole:' . UserRole::TEACHER->value])
     ->prefix('teacher')
@@ -40,9 +37,10 @@ Route::middleware(['auth', 'verified', 'userRole:' . UserRole::TEACHER->value])
         Route::get('/course/{course}', [App\Http\Controllers\Teacher\CourseController::class, 'show'])->name('teacher.courses.show');
 
         Route::resource('courses.exams', ExamController::class, ['as' => 'teacher']);
-        // Route::resource('questions', QuestionController::class);
+        Route::resource('courses.exams.questions', QuestionController::class, ['as' => 'teacher']);
     });
 
+//Routes Student
 
 Route::middleware(['auth', 'verified', 'userRole:' . UserRole::STUDENT->value])
     ->prefix('student')

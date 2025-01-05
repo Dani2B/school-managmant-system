@@ -6,6 +6,7 @@ use App\Enum\UserRole;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Exam;
 
 
 
@@ -57,6 +58,7 @@ class CourseController extends Controller
     public function show(Course $course)
     {
         $students = $course->students()->paginate(10); 
+      
 
         return view("admin.courses.show", ["course" => $course, "students" => $students]);
     }

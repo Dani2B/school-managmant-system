@@ -10,11 +10,19 @@ class Question extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title',
+        'text',
         'image',
         'description',
         'options',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'options' => 'array',
+            
+        ];
+    }
 
     public function exam(){
         return $this->belongsTo(Exam::class);
